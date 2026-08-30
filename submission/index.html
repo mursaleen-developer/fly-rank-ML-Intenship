@@ -1,1 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Search Intelligence Capstone | Qurat ul Mursaleen</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background: #08111f;
+    color: #e7eef8;
+    line-height: 1.7;
+}
+
+a {
+    color: #65d9ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: auto;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(35, 211, 238, .16), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(99, 102, 241, .18), transparent 30%),
+        #08111f;
+}
+
+.eyebrow {
+    color: #65d9ff;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.05;
+    max-width: 900px;
+    margin-bottom: 25px;
+}
+
+.hero p {
+    max-width: 760px;
+    font-size: 20px;
+    color: #aebed1;
+}
+
+.author {
+    margin-top: 30px;
+    font-weight: 600;
+}
+
+/* NAV */
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(8, 17, 31, .9);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #1c2b40;
+}
+
+.nav-inner {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 15px 0;
+}
+
+.nav a {
+    white-space: nowrap;
+    color: #aebed1;
+    font-size: 14px;
+}
+
+.nav a:hover {
+    color: #65d9ff;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 75px 0;
+    border-bottom: 1px solid #17263a;
+}
+
+.section-number {
+    color: #65d9ff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 36px;
+    margin: 8px 0 25px;
+}
+
+h3 {
+    font-size: 21px;
+    margin: 30px 0 12px;
+}
+
+p {
+    color: #b7c5d6;
+    margin-bottom: 16px;
+}
+
+ul, ol {
+    margin: 18px 0 18px 25px;
+    color: #b7c5d6;
+}
+
+li {
+    margin-bottom: 9px;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 35px 0;
+}
+
+.card {
+    padding: 24px;
+    background: #0e1a2b;
+    border: 1px solid #20334c;
+    border-radius: 16px;
+}
+
+.card strong {
+    display: block;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.card span {
+    color: #8fa3ba;
+    font-size: 14px;
+}
+
+/* TABLE */
+
+.table-wrap {
+    overflow-x: auto;
+    margin: 25px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #0e1a2b;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #20334c;
+}
+
+th {
+    color: #65d9ff;
+    background: #111f33;
+}
+
+td {
+    color: #c5d1df;
+}
+
+/* HIGHLIGHT */
+
+.highlight {
+    margin: 30px 0;
+    padding: 28px;
+    border-left: 4px solid #65d9ff;
+    background: #0e1a2b;
+    border-radius: 0 14px 14px 0;
+}
+
+.highlight strong {
+    color: white;
+}
+
+/* BAR CHART */
+
+.chart {
+    margin: 30px 0;
+    padding: 28px;
+    background: #0e1a2b;
+    border: 1px solid #20334c;
+    border-radius: 16px;
+}
+
+.bar-row {
+    margin: 20px 0;
+}
+
+.bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.bar-bg {
+    height: 14px;
+    background: #1b2a3f;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    background: linear-gradient(90deg, #22d3ee, #6366f1);
+    border-radius: 20px;
+}
+
+/* CODE */
+
+code {
+    background: #111f33;
+    padding: 3px 7px;
+    border-radius: 5px;
+    color: #65d9ff;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 50px 0;
+    text-align: center;
+    color: #7f93aa;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    h2 {
+        font-size: 29px;
+    }
+}
+
+@media (max-width: 500px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 65px 0;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+<div class="container">
+
+<div class="eyebrow">FlyRank ML Internship · Search Intelligence Capstone</div>
+
+<h1>
+Which content pages should an editor review first?
+</h1>
+
+<p>
+A machine-learning approach to prioritizing editorial review using observable
+search-performance signals and a time-aware evaluation design.
+</p>
+
+<div class="author">
+Qurat ul Mursaleen · Software Engineering Student · Aspiring Data Analyst & BI Professional
+</div>
+
+</div>
+</header>
+
+<nav class="nav">
+<div class="container nav-inner">
+<a href="#abstract">Abstract</a>
+<a href="#introduction">Problem</a>
+<a href="#data">Data</a>
+<a href="#methodology">Methodology</a>
+<a href="#results">Results</a>
+<a href="#limitations">Limitations</a>
+<a href="#recommendations">Recommendations</a>
+<a href="#reproducibility">Reproducibility</a>
+<a href="#acknowledgments">Credit</a>
+</div>
+</nav>
+
+<main>
+
+<!-- ABSTRACT -->
+
+<section id="abstract">
+<div class="container">
+
+<div class="section-number">01 · ABSTRACT</div>
+<h2>Abstract</h2>
+
+<p>
+This study asks which content pages should be reviewed first based on observable
+search-performance signals. Historical content signals from March–May 2026 were
+used to build page-level features, while June 2026 was held out as a future
+evaluation period. A Random Forest model was compared with a simple baseline
+that ranked pages using historical impressions. The model achieved a ROC-AUC of
+0.9801 and Average Precision of 0.9566, compared with 0.9301 and 0.8276 for the
+baseline. The resulting priority scores provide a repeatable decision-support
+workflow for helping editors focus review time on higher-priority content
+opportunities.
+</p>
+
+<div class="cards">
+<div class="card">
+<strong>389K</strong>
+<span>Pages evaluated</span>
+</div>
+
+<div class="card">
+<strong>169,951</strong>
+<span>Defined opportunities</span>
+</div>
+
+<div class="card">
+<strong>0.9801</strong>
+<span>Model ROC-AUC</span>
+</div>
+
+<div class="card">
+<strong>0.9566</strong>
+<span>Model Average Precision</span>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- INTRODUCTION -->
+
+<section id="introduction">
+<div class="container">
+
+<div class="section-number">02 · INTRODUCTION</div>
+<h2>Problem Statement</h2>
+
+<p>
+Editors often have more pages to review than they can manually inspect.
+The decision supported by this analysis is therefore:
+<strong>which pages should receive attention first?</strong>
+</p>
+
+<p>
+The goal is not to determine why a page changed in search or to claim knowledge
+of Google's ranking algorithm. Instead, the project uses observable historical
+signals to create a measurable prioritization system.
+</p>
+
+<div class="highlight">
+<strong>Decision supported:</strong>
+Use historical search-performance signals to prioritize pages for editorial
+review when review capacity is limited.
+</div>
+
+</div>
+</section>
+
+<!-- DATA -->
+
+<section id="data">
+<div class="container">
+
+<div class="section-number">03 · DATA</div>
+<h2>Data</h2>
+
+<h3>Release</h3>
+
+<p>
+FlyRank ML Internship warehouse — March 2026 partition and related daily
+performance partitions.
+</p>
+
+<h3>Tables Used</h3>
+
+<ul>
+<li><code>fact_content_query_90d.parquet</code></li>
+<li><code>dim_content.parquet</code></li>
+<li><code>fact_content_daily_performance</code></li>
+</ul>
+
+<h3>Date Window</h3>
+
+<p>
+March 2026 through June 2026.
+March–May were used for historical features and June was used as the future
+evaluation period.
+</p>
+
+<h3>Observed Warehouse Scale</h3>
+
+<div class="cards">
+<div class="card">
+<strong>2.41M</strong>
+<span>Query records</span>
+</div>
+
+<div class="card">
+<strong>133,852</strong>
+<span>Unique content pages</span>
+</div>
+
+<div class="card">
+<strong>211.7M</strong>
+<span>90-day impressions</span>
+</div>
+
+<div class="card">
+<strong>459,918</strong>
+<span>90-day clicks</span>
+</div>
+</div>
+
+<h3>Public-Safe Handling</h3>
+
+<ul>
+<li>Private queries and client-identifying information were excluded.</li>
+<li>Only fields required for the ranking analysis were used.</li>
+<li>Anonymized content identifiers were retained for ranked recommendations.</li>
+</ul>
+
+</div>
+</section>
+
+<!-- METHODOLOGY -->
+
+<section id="methodology">
+<div class="container">
+
+<div class="section-number">04 · METHODOLOGY</div>
+<h2>Methodology</h2>
+
+<h3>Features</h3>
+
+<ul>
+<li>Historical impressions</li>
+<li>Historical clicks</li>
+<li>Historical click-through rate</li>
+<li>Average search position</li>
+<li>Pageviews and sessions</li>
+<li>Engaged sessions</li>
+<li>Organic sessions</li>
+<li>Number of active days</li>
+</ul>
+
+<h3>Label Definition</h3>
+
+<p>
+A positive label represents a page with at least 20 historical impressions
+and a June impression decline of at least 30% compared with its March–May
+historical period.
+</p>
+
+<p>
+Under this operational definition, <strong>169,951 pages</strong> were labeled
+as editorial opportunities, representing <strong>43.69%</strong> of the
+389,032 pages available in both periods.
+</p>
+
+<h3>Baseline</h3>
+
+<p>
+The baseline ranks pages using historical impressions without a machine-learning
+model.
+</p>
+
+<h3>Validation Design</h3>
+
+<p>
+A historical-to-future evaluation design was used. March–May provided the
+information available before the decision, while June provided the future
+evaluation outcome.
+</p>
+
+<h3>Leakage Checks</h3>
+
+<ul>
+<li>Future June outcome information was excluded from model features.</li>
+<li>The evaluation outcome was not used as an input feature.</li>
+<li>Features represent historical information available before evaluation.</li>
+</ul>
+
+</div>
+</section>
+
+<!-- RESULTS -->
+
+<section id="results">
+<div class="container">
+
+<div class="section-number">05 · RESULTS</div>
+<h2>Model vs Baseline</h2>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>ROC-AUC</th>
+<th>Average Precision</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Baseline — Historical Impressions</td>
+<td>0.9301</td>
+<td>0.8276</td>
+</tr>
+
+<tr>
+<td><strong>Random Forest</strong></td>
+<td><strong>0.9801</strong></td>
+<td><strong>0.9566</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="chart">
+
+<h3>ROC-AUC</h3>
+
+<div class="bar-row">
+<div class="bar-label">
+<span>Baseline</span>
+<strong>0.9301</strong>
+</div>
+<div class="bar-bg">
+<div class="bar" style="width:93.01%"></div>
+</div>
+</div>
+
+<div class="bar-row">
+<div class="bar-label">
+<span>Random Forest</span>
+<strong>0.9801</strong>
+</div>
+<div class="bar-bg">
+<div class="bar" style="width:98.01%"></div>
+</div>
+</div>
+
+</div>
+
+<div class="chart">
+
+<h3>Average Precision</h3>
+
+<div class="bar-row">
+<div class="bar-label">
+<span>Baseline</span>
+<strong>0.8276</strong>
+</div>
+<div class="bar-bg">
+<div class="bar" style="width:82.76%"></div>
+</div>
+</div>
+
+<div class="bar-row">
+<div class="bar-label">
+<span>Random Forest</span>
+<strong>0.9566</strong>
+</div>
+<div class="bar-bg">
+<div class="bar" style="width:95.66%"></div>
+</div>
+</div>
+
+</div>
+
+<h3>Feature Importance</h3>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Importance</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Historical impressions</td>
+<td>61.99%</td>
+</tr>
+<tr>
+<td>Historical average position</td>
+<td>18.58%</td>
+</tr>
+<tr>
+<td>Historical CTR</td>
+<td>7.74%</td>
+</tr>
+<tr>
+<td>Historical clicks</td>
+<td>5.06%</td>
+</tr>
+<tr>
+<td>Active days</td>
+<td>3.95%</td>
+</tr>
+<tr>
+<td>Pageviews</td>
+<td>1.34%</td>
+</tr>
+<tr>
+<td>Sessions</td>
+<td>1.04%</td>
+</tr>
+<tr>
+<td>Organic sessions</td>
+<td>0.29%</td>
+</tr>
+<tr>
+<td>Engaged sessions</td>
+<td>0.01%</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="highlight">
+<strong>Observed result:</strong>
+Historical impressions were the strongest feature in the Random Forest,
+followed by historical average position and CTR.
+</div>
+
+</div>
+</section>
+
+<!-- LIMITATIONS -->
+
+<section id="limitations">
+<div class="container">
+
+<div class="section-number">06 · LIMITATIONS</div>
+<h2>Limitations & Honest Framing</h2>
+
+<ul>
+<li>The opportunity label is an operational definition created for this analysis.</li>
+<li>The model does not prove that a page needs a refresh.</li>
+<li>The analysis does not prove or explain Google's ranking algorithm.</li>
+<li>The results cover the March–June 2026 evaluation window.</li>
+<li>Model performance should not be treated as a guarantee of future performance.</li>
+<li>The recommendations support editorial review rather than automatically determining content changes.</li>
+</ul>
+
+<div class="highlight">
+<strong>Framing:</strong>
+These results are measured and directional decision-support evidence, not causal
+evidence of search-ranking changes.
+</div>
+
+</div>
+</section>
+
+<!-- RECOMMENDATIONS -->
+
+<section id="recommendations">
+<div class="container">
+
+<div class="section-number">07 · RECOMMENDATIONS</div>
+<h2>Ranked Editorial Recommendations</h2>
+
+<p>
+The model generated a priority score for each evaluation page. Higher scores
+represent pages that the model considers more likely to match the defined
+editorial-opportunity label.
+</p>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Content ID</th>
+<th>Priority</th>
+<th>Historical Impressions</th>
+<th>Impression Change</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>content_7bead710b3839213</td>
+<td>0.9938</td>
+<td>10,924</td>
+<td>-93.38%</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>content_d08c4c037a3b6706</td>
+<td>0.9933</td>
+<td>7,976</td>
+<td>-93.98%</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>content_bc2fc1224f67617c</td>
+<td>0.9930</td>
+<td>4,478</td>
+<td>-94.77%</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>content_c3543a3309314df9</td>
+<td>0.9929</td>
+<td>21,870</td>
+<td>-96.77%</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>content_151ecef625bbc703</td>
+<td>0.9929</td>
+<td>13,632</td>
+<td>-86.16%</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>content_f0cbf75bb1849b93</td>
+<td>0.9929</td>
+<td>7,396</td>
+<td>-94.20%</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>content_7a0a59b4cb181ab9</td>
+<td>0.9926</td>
+<td>143,327</td>
+<td>-86.43%</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>content_81707f944166e061</td>
+<td>0.9926</td>
+<td>81,414</td>
+<td>-83.10%</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>content_fd358a60ca37c05f</td>
+<td>0.9924</td>
+<td>86,846</td>
+<td>-74.05%</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>content_474d717db192ae3f</td>
+<td>0.9924</td>
+<td>3,096</td>
+<td>-98.29%</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>Action Playbook</h3>
+
+<ol>
+<li>Start with the highest-priority pages.</li>
+<li>Review the historical visibility and click signals.</li>
+<li>Confirm that the decline is meaningful and sustained.</li>
+<li>Inspect the content before making changes.</li>
+<li>Prioritize pages where multiple observable signals support review.</li>
+<li>Monitor future performance after editorial action.</li>
+</ol>
+
+</div>
+</section>
+
+<!-- REPRODUCIBILITY -->
+
+<section id="reproducibility">
+<div class="container">
+
+<div class="section-number">08 · REPRODUCIBILITY</div>
+<h2>Reproducibility</h2>
+
+<p>
+The analysis was developed using Python, DuckDB, pandas, NumPy, and
+scikit-learn in Google Colab.
+</p>
+
+<p>
+The complete capstone notebook is stored in the project repository under:
+</p>
+
+<p>
+<code>work/notebooks/capstone.ipynb</code>
+</p>
+
+<h3>Generated Artifacts</h3>
+
+<ul>
+<li>Model versus baseline results</li>
+<li>Feature importance table</li>
+<li>Top-20 ranked recommendations</li>
+<li>ROC-AUC comparison</li>
+<li>Average Precision comparison</li>
+</ul>
+
+<p>
+Saved output files include:
+<code>model_vs_baseline.csv</code>,
+<code>feature_importance.csv</code>, and
+<code>top_20_recommendations.csv</code>.
+</p>
+
+</div>
+</section>
+
+<!-- ACKNOWLEDGMENTS -->
+
+<section id="acknowledgments">
+<div class="container">
+
+<div class="section-number">09 · ACKNOWLEDGMENTS</div>
+<h2>Acknowledgments & Data Credit</h2>
+
+<p>
+This project was completed as part of the FlyRank ML Internship.
+</p>
+
+<p>
+The analysis was built on the FlyRank ML Internship dataset using anonymized
+search-performance data for research and educational purposes.
+</p>
+
+<p>
+<strong>Data credit:</strong>
+<a href="https://flyrank.ai" target="_blank" rel="noopener">
+FlyRank
+</a>
+</p>
+
+<div class="highlight">
+<strong>Built as a practical machine-learning decision-support project.</strong>
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+<p>
+© 2026 Qurat ul Mursaleen · Search Intelligence Capstone
+</p>
+</div>
+</footer>
+
+</body>
+</html>
